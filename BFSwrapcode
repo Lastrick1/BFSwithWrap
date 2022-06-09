@@ -1,0 +1,22 @@
+    # Block space on traveled map
+    traveled[y][x] = "#"
+
+    # Look in four directions around current position, including wrap around
+    # If can move, add it to the queue, increment step number
+    if (x > 0): # Check left
+        if (traveled[y][x-1] != "#"): q.put([x-1, y, next_step])
+    else: # Check far right position
+        if (traveled[y][w-1] != "#"): q.put([w-1, y, next_step])
+    if (x < w - 1): # Check right
+        if (traveled[y][x+1] != "#"): q.put([x+1, y, next_step])
+    else: # Check far left position
+        if (traveled[y][0] != "#"): q.put([0, y, next_step])
+
+    if (y > 0): # Check up
+        if (traveled[y-1][x] != "#"): q.put([x, y-1, next_step])
+    else: # Check far bottom position
+        if (traveled[h-1][x] != "#"): q.put([x, h-1, next_step])
+    if (y < h - 1): # Check down
+        if (traveled[y+1][x] != "#"): q.put([x, y+1, next_step])
+    else: # Check far top position
+        if (traveled[0][x] != "#"): q.put([x, 0, next_step])
